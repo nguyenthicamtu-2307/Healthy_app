@@ -12,6 +12,27 @@ public class User implements Serializable {
     private String Quyen;
     private  String AnhDaidien;
 
+public User(String TaiKhoan,String MatKhau,String TenUser){
+    this.TaiKhoan=TaiKhoan;
+    this.MatKhau=MatKhau;
+    this.TenUser=TenUser;
+}
+    @Override
+    public String toString() {
+        return "tbluser{" +
+                "Id=" + Id +
+                ", TaiKhoan='" + TaiKhoan + '\'' +
+                ", MatKhau='" + MatKhau + '\'' +
+                ", TenUser='" + TenUser + '\'' +
+                ", Dob=" + Dob +
+                ", GioiTinh='" + GioiTinh + '\'' +
+                ", DiaChi='" + DiaChi + '\'' +
+                ", SDT='" + SDT + '\'' +
+                ", Quyen='" + Quyen + '\'' +
+                ", AnhDaiDien'" + AnhDaidien + '\'' +
+                '}';
+    }
+
     public int getId() {
         return Id;
     }
