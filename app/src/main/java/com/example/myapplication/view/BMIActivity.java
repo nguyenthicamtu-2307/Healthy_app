@@ -38,6 +38,10 @@ public class BMIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bimbackup);
+        Bundle bundleRecevie = getIntent().getExtras();
+        if(bundleRecevie!=null){
+            account = (User) bundleRecevie.get("object_user");
+        }
         weightEdit = findViewById(R.id.editWeigh);
         heightEdit = findViewById(R.id.editHeigh);
         btnBmi = findViewById(R.id.imageButton2);
@@ -50,27 +54,25 @@ public class BMIActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveInfor(account);
                 update();
-            APIService.apiService.update(account.getTaiKhoan(),account).enqueue(new Callback<User>() {
+            APIService.apiService.updateKhachhang(account,account.getTaiKhoan()).enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(BMIActivity.this, "Thaats bai!!!", Toast.LENGTH_LONG).show();
-
-                    }
-                    if(response.isSuccessful()) {
-
+                    if (response.isSuccessful()){
+                        Toast.makeText(BMIActivity.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
-                    Toast.makeText(BMIActivity.this, "Update successful!!!Please login now" +
-                            " ", Toast.LENGTH_LONG).show();
-
-                    Intent intent = new Intent(BMIActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(BMIActivity.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
                 }
             });
+                Intent intent = new Intent(BMIActivity.this, LoginActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("object_user",account);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
 
             }
         });

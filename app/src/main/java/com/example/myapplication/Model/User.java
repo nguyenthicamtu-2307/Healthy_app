@@ -2,7 +2,7 @@ package com.example.myapplication.Model;
 import java.io.Serializable;
 public class User implements Serializable {
     private  int Id;
-    private String TaiKhoan;
+    private String taiKhoan;
     private String MatKhau;
     private  String TenUser;
     private  String Dob;
@@ -15,7 +15,7 @@ public class User implements Serializable {
     private  int CanNang;
 
 public User(String TaiKhoan,String MatKhau,String TenUser){
-    this.TaiKhoan=TaiKhoan;
+    this.taiKhoan=TaiKhoan;
     this.MatKhau=MatKhau;
     this.TenUser=TenUser;
 }
@@ -27,7 +27,7 @@ public User(String TaiKhoan,String MatKhau,String TenUser){
     public String toString() {
         return "tbluser{" +
                 "Id=" + Id +
-                ", TaiKhoan='" + TaiKhoan + '\'' +
+                ", TaiKhoan='" + taiKhoan + '\'' +
                 ", MatKhau='" + MatKhau + '\'' +
                 ", TenUser='" + TenUser + '\'' +
                 ", Dob=" + Dob +
@@ -64,11 +64,11 @@ public User(String TaiKhoan,String MatKhau,String TenUser){
     }
 
     public String getTaiKhoan() {
-        return TaiKhoan;
+        return taiKhoan;
     }
 
     public void setTaiKhoan(String taiKhoan) {
-        TaiKhoan = taiKhoan;
+        taiKhoan = taiKhoan;
     }
 
     public String getMatKhau() {

@@ -29,9 +29,7 @@ public interface APIService {
         Call<List<User>> khachhang();
         @POST("khachhang/add")
         Call<User> createUser(@Body User khachHang);
-        @POST("khachhang/update/{idkh}")
-        Call<User> update(
-                @Path("tbluser") String User,
-                @Body User personinf
-        );
+        @POST("khachhang/update/{taiKhoan}")
+        Call<User> updateKhachhang(@Body User khachhang,
+                                   @Path("taiKhoan") String taiKhoan);
 }
