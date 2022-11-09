@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface APIService {
 
@@ -28,4 +29,9 @@ public interface APIService {
         Call<List<User>> khachhang();
         @POST("khachhang/add")
         Call<User> createUser(@Body User khachHang);
+        @POST("khachhang/update/{idkh}")
+        Call<User> update(
+                @Path("tbluser") String User,
+                @Body User personinf
+        );
 }
