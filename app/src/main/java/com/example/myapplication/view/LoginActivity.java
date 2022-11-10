@@ -1,154 +1,107 @@
 package com.example.myapplication.view;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.SingleLineTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Model.Serverce.APIService;
-import com.example.myapplication.Model.Serverce.Client;
-import com.example.myapplication.Model.User;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.ViewModel.LoginViewModels;
 import com.example.myapplication.ViewModel.SignupViewModel;
-import com.example.myapplication.view.APP.SessionManager;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-
-    private EditText nameEdit, passEdit;
+    private EditText emailEdit, passEdit;
     private TextView signUpText;
     private Button signInBtn;
-    private SignupViewModel viewModel;
-    public SessionManager sessionManager;
-    public SharedPreferences sharedPreferences;
-    private List<User> khachHang;
-    APIService apiService;
-    User kh;
+    private FirebaseAuth mAuth;
+    private LoginViewModels viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
-        sessionManager= new SessionManager(this);
 
-
-
-
-        viewModel = new SignupViewModel(getApplication());
-
-        if (viewModel.getUserData() != null){
-                viewModel.getUserData().observe(this, new Observer<String>() {
-                    @Override
-                    public void onChanged(String s) {
-                        if (s != null || s != "") {
-                            sessionManager.createSession(nameEdit.getText().toString().trim());
-                            Intent myIntent = new Intent(LoginActivity.this, BMIActivity.class);
-                            startActivity(myIntent);
-                        }
-                    }
-                });
-        }
-        apiService= Client.getAPIService();
-        Login();
-        nameEdit = findViewById(R.id.email);
+        emailEdit = findViewById(R.id.email);
         passEdit = findViewById(R.id.pass);
         signInBtn = findViewById(R.id.btnSignIn);
         signUpText = findViewById(R.id.signUpText);
-        signInBtn.setOnClickListener(new View.OnClickListener() {
+
+
+        viewModel = new LoginViewModels(getApplication());
+
+        viewModel.getUserData().observe(this, new Observer<FirebaseUser>() {
             @Override
-            public void onClick(View v) {
-                if(TextUtils.isEmpty(nameEdit.getText().toString())||
-                        TextUtils.isEmpty(passEdit.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "Username/Password in required", Toast.LENGTH_LONG).show();
-                }else{
-                    checkLogin();
+            public void onChanged(FirebaseUser firebaseUser) {
+                if (firebaseUser != null){
+                    Intent myIntent = new Intent(LoginActivity.this, BMIActivity.class);
+                    startActivity(myIntent);
                 }
             }
         });
+
+        signUpText.setOnClickListener(this::onClick);
+        signInBtn.setOnClickListener(this::onClick);
 
 
     }
 
-    public void checkLogin() {
-        String strUserName = nameEdit.getText().toString().trim();
-        String strPassword = passEdit.getText().toString().trim();
-        AlertDialog.Builder alter = new AlertDialog.Builder(LoginActivity.this);
-        alter.setTitle("Nhập thiếu thông tin");
-        alter.setMessage("Bạn nhập thiếu thông tin. Vui lòng nhập lại!");
-        alter.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                alter.setCancelable(true);
-            }
-        });
-        if (strUserName.isEmpty() || strPassword.isEmpty()) {
-            alter.show();
-        } else {
-            if (khachHang == null || khachHang.isEmpty()) {
-                return;
-            }
-            boolean isHasUser = false;
-            for (User khachHang1 : khachHang) {
-                if (strUserName.equals(khachHang1.getTaiKhoan()) && strPassword.equals(khachHang1.getMatKhau())) {
-                    isHasUser = true;
-                    kh = khachHang1;
-                    break;
-                }
-            }
-            if (isHasUser) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("object_user", kh);
-                intent.putExtras(bundle);
-                Toast.makeText(getApplicationContext(), "" + kh.getId(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.signUpText:
+                startActivity(new Intent(this, SignupActivity.class));
+                break;
 
-            } else {
-                alter.setTitle("Đăng nhập thất bại");
-                alter.setMessage("Bạn nhập sai tên đăng nhập hoặc tài khoản. Vui lòng nhập lại");
-                alter.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alter.setCancelable(true);
-                    }
-                });
-                alter.show();
-            }
+            case R.id.btnSignIn:
+                userLogin();
+                break;
+
         }
     }
 
+    public void userLogin() {
+        String email = emailEdit.getText().toString().trim();
+        String pass = passEdit.getText().toString().trim();
 
-    public void  Login(){
-        Call<List<User>> call = apiService.khachhang();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                khachHang=response.body();
-            }
 
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+        if (email.isEmpty()) {
+            emailEdit.setError("email is required");
+            emailEdit.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailEdit.setError("Please provide valid email");
+            emailEdit.requestFocus();
+            return;
+        }
 
-            }
-        });
+        if (pass.isEmpty()) {
+            passEdit.setError("email is required");
+            passEdit.requestFocus();
+            return;
+        }
+
+        if (pass.length() < 6) {
+            passEdit.setError("Min password length should be 6 characters");
+            passEdit.requestFocus();
+            return;
+        }
+
+            viewModel.signIn(email, pass);
     }
 }

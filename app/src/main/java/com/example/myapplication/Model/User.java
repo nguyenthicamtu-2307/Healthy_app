@@ -1,94 +1,86 @@
 package com.example.myapplication.Model;
 import java.io.Serializable;
 public class User implements Serializable {
-    private  int Id;
-    private String TaiKhoan;
-    private String MatKhau;
-    private  String TenUser;
-    private  String Dob;
-    private  String GioiTinh;
-    private String DiaChi;
-    private int SDT;
-    private String Quyen;
-    private  String AnhDaidien;
+    private Long id;
+    private String userName;
+    private String passWord;
+    private String anh;
+    private String hoTen;
+    private String ngaySinh;
+    private String email;
+    private String gioiTinh;
+    private String sdt;
 
-    public int getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(int id) {
-        Id = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getTaiKhoan() {
-        return TaiKhoan;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setTaiKhoan(String taiKhoan) {
-        TaiKhoan = taiKhoan;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getMatKhau() {
-        return MatKhau;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public String getTenUser() {
-        return TenUser;
+    public String getAnh() {
+        return anh;
     }
 
-    public void setTenUser(String tenUser) {
-        TenUser = tenUser;
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
 
-    public String getDob() {
-        return Dob;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setDob(String dob) {
-        Dob = dob;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getGioiTinh() {
-        return GioiTinh;
+        return gioiTinh;
     }
 
     public void setGioiTinh(String gioiTinh) {
-        GioiTinh = gioiTinh;
+        this.gioiTinh = gioiTinh;
     }
 
-    public String getDiaChi() {
-        return DiaChi;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
-    public int getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(int SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getQuyen() {
-        return Quyen;
-    }
-
-    public void setQuyen(String quyen) {
-        Quyen = quyen;
-    }
-
-    public String getAnhDaidien() {
-        return AnhDaidien;
-    }
-
-    public void setAnhDaidien(String anhDaidien) {
-        AnhDaidien = anhDaidien;
-    }
 }
