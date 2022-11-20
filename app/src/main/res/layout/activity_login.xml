@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
                     android:gravity="left"
                     android:text="Tên Đăng Nhập"
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     android:text="Mật khẩu"
                     android:textColor="#000"

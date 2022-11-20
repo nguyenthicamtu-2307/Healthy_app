@@ -55,8 +55,9 @@
             android:layout_height="wrap_content"
             android:hint="Nhập mật khẩu cũ"
             android:background="@drawable/et_circle_15"
-            android:paddingTop="10dp"
             android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:textAlignment="center"
             android:backgroundTint="#0D000000"
             android:inputType="textPassword"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -91,7 +92,7 @@
             android:backgroundTint="#0D000000"
             android:hint="Nhập mật khẩu mới"
             android:inputType="textPassword"
-            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
