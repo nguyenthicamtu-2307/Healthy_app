@@ -69,20 +69,29 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="TÊN ĐĂNG NHẬP"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/text_taikhoan"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:text="MINH"
+            android:text="minh1"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="20dp"
             android:textSize="16sp"/>
+        <ImageButton
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/change"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:background="@null"/>
     </LinearLayout>
     <View
         android:layout_width="330dp"
@@ -106,14 +115,17 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_ten"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="Huỳnh Tấn Minh"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="20dp"
             android:textSize="16sp"/>
         <ImageButton
+            android:id="@+id/image_changename"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/change"
@@ -143,13 +155,14 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_ngaysinh"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="01/01/2001"
+            android:gravity="right"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
-            android:paddingLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:textSize="16sp"/>
         <ImageButton
             android:layout_width="16dp"
@@ -181,12 +194,14 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_email"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="minh@gmail.com"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="20dp"
             android:paddingLeft="20dp"
             android:textSize="16sp"/>
         <ImageButton
@@ -219,14 +234,15 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_gioitinh"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="Nam"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
-            android:paddingLeft="40dp"
-            android:textSize="18sp"/>
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"/>
         <ImageButton
             android:layout_width="16dp"
             android:layout_height="16dp"
@@ -257,15 +273,18 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_sdt"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="0123456789"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="20dp"
             android:paddingLeft="20dp"
             android:textSize="16sp"/>
         <ImageButton
+            android:id="@+id/image_changephone"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/change"
@@ -295,12 +314,14 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_chieucao"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="60Kg"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="20dp"
             android:paddingLeft="40dp"
             android:textSize="16sp"/>
     </LinearLayout>
@@ -326,12 +347,14 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
-            android:layout_width="120dp"
+            android:id="@+id/text_cannang"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="170Cm"
             android:layout_gravity="center"
+            android:gravity="right"
             android:textStyle="bold"
-            android:layout_marginLeft="75dp"
+            android:layout_marginLeft="20dp"
             android:paddingLeft="40dp"
             android:textSize="16sp"/>
     </LinearLayout>

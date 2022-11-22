@@ -21,6 +21,7 @@ import com.example.myapplication.Model.Serverce.APIService;
 import com.example.myapplication.Model.User;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.SignupViewModel;
+import com.example.myapplication.view.APP.SessionManager;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class SignupActivity extends AppCompatActivity {
     public static String unameGlobal ="";
     APIService apiService;
     User  account;
+    public SessionManager sessionManager;
+    public SharedPreferences sharedPreferences;
     private List<User> khachHangs;
     // creating constant keys for shared preferences.
     public static final String SHARED_PREFS = "shared_prefs";
@@ -48,6 +51,8 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        sessionManager = new SessionManager(this);
 
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -121,8 +126,6 @@ public class SignupActivity extends AppCompatActivity {
 
             }
 
-
-
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -136,6 +139,7 @@ public class SignupActivity extends AppCompatActivity {
                 AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
                 alert.setTitle("Đăng Ký Thành Công");
                 alert.setMessage("Bạn đăng ký tài khoản thành công! Vui lòng nhấn OK để đi đến trang tiếp theo!");
+                sessionManager.createSession(nameEdit.getText().toString(), passEdit.getText().toString());
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

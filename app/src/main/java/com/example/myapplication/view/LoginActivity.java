@@ -55,20 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
         sessionManager = new SessionManager(this);
 
-        viewModel = new SignupViewModel(getApplication());
 
-        if (viewModel.getUserData() != null) {
-            viewModel.getUserData().observe(this, new Observer<String>() {
-                @Override
-                public void onChanged(String s) {
-                    if (s != null || s != "") {
-                        sessionManager.createSession(nameEdit.getText().toString().trim());
-                        Intent myIntent = new Intent(LoginActivity.this, BMIActivity.class);
-                        startActivity(myIntent);
-                    }
-                }
-            });
-        }
         apiService = Client.getAPIService();
         nameEdit = findViewById(R.id.tendn);
         passEdit = findViewById(R.id.passlg);
@@ -132,9 +119,10 @@ public class LoginActivity extends AppCompatActivity {
 //            }
             boolean isHasUser = false;
             for (User khachHang1 : khachHang) {
-                if (strUserName.equals(khachHang1.getTaiKhoan()) && strPassword.equals(khachHang1.getMatKhau())) {
+                if (strUserName.equals(khachHang1.getTaikhoan()) && strPassword.equals(khachHang1.getMatkhau())) {
                     isHasUser = true;
                     kh = khachHang1;
+                    sessionManager.createSession(kh.getTaikhoan(),kh.getTenuser(), kh.getSdt(), kh.getDob(),kh.getMatkhau(),kh.getChieucao(), kh.getCannang());
                     break;
                 }
             }
