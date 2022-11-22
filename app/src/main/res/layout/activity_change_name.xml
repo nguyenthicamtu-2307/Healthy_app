@@ -44,6 +44,7 @@
         android:background="#0D000000"/>
 
     <EditText
+        android:id="@+id/text_tenuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"

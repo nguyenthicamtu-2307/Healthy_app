@@ -3,7 +3,9 @@ package com.example.myapplication.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -21,6 +23,9 @@ import com.example.myapplication.Model.User;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.BmiViewModel;
 import com.example.myapplication.ViewModel.SignupViewModel;
+import com.example.myapplication.view.APP.SessionManager;
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +38,8 @@ public class BMIActivity extends AppCompatActivity {
     private TextView result, nx;
     APIService apiService;
     User account=new User();
+    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +61,7 @@ public class BMIActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveInfor(account);
                 update();
-            APIService.apiService.updateKhachhang(account,account.getTaiKhoan()).enqueue(new Callback<User>() {
+            APIService.apiService.updateKhachhang(account,account.getTaikhoan()).enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if (response.isSuccessful()){
@@ -78,49 +85,6 @@ public class BMIActivity extends AppCompatActivity {
         });
 
 
-//        public void insertBmi () {
-//            String weightstring = weightEdit.getText().toString().trim();
-//            String heightstring = heightEdit.getText().toString().trim();
-//            if (weightstring.isEmpty()) {
-//                weightEdit.setError("weight is required");
-//                weightEdit.requestFocus();
-//                return;
-//            }
-//
-//            if (heightstring.isEmpty()) {
-//                heightEdit.setError("height is required");
-//                heightEdit.requestFocus();
-//                return;
-//            }
-//            Double weight = Double.parseDouble(weightEdit.getText().toString().trim());
-//            Double height = Double.parseDouble(heightEdit.getText().toString().trim());
-//
-//
-//            Double heightt = height / 100;
-//            Double BMI = weight / (heightt * heightt);
-//
-//            Drawable drawable = getDrawable(R.drawable.vienbotron);
-//            GradientDrawable gradientDrawable = (GradientDrawable) drawable;
-//
-//            if (BMI < 18.5) {
-//                gradientDrawable.setStroke(50, Color.BLUE);
-//            } else {
-//                if (BMI < 25) {
-//                    gradientDrawable.setStroke(50, Color.GREEN);
-//                } else {
-//                    if (BMI < 30) {
-//                        gradientDrawable.setStroke(50, Color.YELLOW);
-//                    } else {
-//                        gradientDrawable.setStroke(50, Color.RED);
-//                    }
-//                }
-//            }
-//            Intent myIntent = new Intent(BMIActivity.this, BIMActivity_02.class);
-//            myIntent.putExtra("weight", weight);
-//            myIntent.putExtra("height", height);
-//            startActivity(myIntent);
-//        }
-
     }
     public void  update(){
         String weightstring = weightEdit.getText().toString().trim();
@@ -138,18 +102,25 @@ public class BMIActivity extends AppCompatActivity {
         }
     }
     private void saveInfor(User khachhang) {
-        khachhang.setCanNang(Integer.parseInt(weightEdit.getText().toString()));
-        khachhang.setChieuCao(Integer.parseInt(heightEdit.getText().toString()));
+
+        sessionManager = new SessionManager(this);
+        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        String pass = user.get(sessionManager.PASSWORD);
+
+        khachhang.setCannang(Integer.parseInt(weightEdit.getText().toString()));
+        khachhang.setChieucao(Integer.parseInt(heightEdit.getText().toString()));
+        khachhang.setMatkhau(pass);
        
-        khachhang.setTaiKhoan(SignupActivity.unameGlobal);
+        khachhang.setTaikhoan(SignupActivity.unameGlobal);
 
     }
     public void nhanData() {
         Bundle bundleRecevie = getIntent().getExtras();
         if (bundleRecevie != null) {
             account = (User) bundleRecevie.get("object_user");
-            weightEdit.setText(account.getCanNang());
-            heightEdit.setText(account.getChieuCao());
+            weightEdit.setText(account.getCannang());
+            heightEdit.setText(account.getChieucao());
         }
     }
 }
