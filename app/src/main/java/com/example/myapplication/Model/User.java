@@ -2,7 +2,7 @@ package com.example.myapplication.Model;
 import java.io.Serializable;
 public class User implements Serializable {
     private  int Id;
-    private String TaiKhoan;
+    private String taiKhoan;
     private String MatKhau;
     private  String TenUser;
     private  String Dob;
@@ -11,6 +11,49 @@ public class User implements Serializable {
     private int SDT;
     private String Quyen;
     private  String AnhDaidien;
+    private  int ChieuCao;
+    private  int CanNang;
+
+public User(String TaiKhoan,String MatKhau,String TenUser){
+    this.taiKhoan=TaiKhoan;
+    this.MatKhau=MatKhau;
+    this.TenUser=TenUser;
+}
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "tbluser{" +
+                "Id=" + Id +
+                ", TaiKhoan='" + taiKhoan + '\'' +
+                ", MatKhau='" + MatKhau + '\'' +
+                ", TenUser='" + TenUser + '\'' +
+                ", Dob=" + Dob +
+                ", GioiTinh='" + GioiTinh + '\'' +
+                ", DiaChi='" + DiaChi + '\'' +
+                ", SDT='" + SDT + '\'' +
+                ", Quyen='" + Quyen + '\'' +
+                ", AnhDaiDien'" + AnhDaidien + '\'' +
+                '}';
+    }
+
+    public int getChieuCao() {
+        return ChieuCao;
+    }
+
+    public void setChieuCao(int chieuCao) {
+        ChieuCao = chieuCao;
+    }
+
+    public int getCanNang() {
+        return CanNang;
+    }
+
+    public void setCanNang(int canNang) {
+        CanNang = canNang;
+    }
 
     public int getId() {
         return Id;
@@ -21,11 +64,11 @@ public class User implements Serializable {
     }
 
     public String getTaiKhoan() {
-        return TaiKhoan;
+        return taiKhoan;
     }
 
     public void setTaiKhoan(String taiKhoan) {
-        TaiKhoan = taiKhoan;
+        taiKhoan = taiKhoan;
     }
 
     public String getMatKhau() {
