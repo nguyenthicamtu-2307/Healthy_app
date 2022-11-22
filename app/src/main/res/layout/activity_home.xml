@@ -5,14 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.HomeActivity">
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@menu/menu1"
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        />
+
 
 
 
@@ -21,6 +14,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -39,56 +33,58 @@
             android:layout_marginTop="15dp"
             android:textColor="#000"
                 />
+
         <LinearLayout
-            android:layout_height="140dp"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_height="137dp"
+            android:layout_marginTop="20dp">
+
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/health"
-                        />
+                android:background="@drawable/health" />
+
             <LinearLayout
-                android:layout_height="140dp"
                 android:layout_width="250dp"
-                android:background="#EBB7B7"
+                android:layout_height="140dp"
                 android:layout_marginLeft="20dp"
-                android:orientation="vertical"
-                >
+                android:background="#EBB7B7"
+                android:orientation="vertical">
+
                 <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
                     android:text="Bắt đầu xây dựng thực đơn của bạn?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textSize="18dp"
                     android:textColor="#000"
-                    android:textStyle="bold"
-                    />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:layout_height="60dp"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
-                    android:text="Bắt đầu  nhịn ăn và tìm hiểu những yếu tố sẽ thay đổi cơ thể bạn"
-                    />
+                    android:text="Bắt đầu  nhịn ăn và tìm hiểu những yếu tố sẽ thay đổi cơ thể bạn" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/listviewhome"
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
             android:layout_marginTop="54dp">
+
             <ListView
-                android:id="@+id/listviewhome"
+
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="5dp"
                 android:text="ListView!"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,19 +93,20 @@
                 tools:ignore="MissingConstraints" />
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_height="100dp"
-            android:layout_width="match_parent"
-            >
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_nav"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FF03DAC5"
-                android:layout_alignParentBottom="true"
-                app:menu="@menu/menu"
-                />
-        </LinearLayout>
+
 
     </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewpager"
+        android:layout_above="@+id/bottom_nav"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu"
+        app:itemBackground="@color/backgroud_color"
+        app:itemIconTint="@color/black"/>
 </RelativeLayout>

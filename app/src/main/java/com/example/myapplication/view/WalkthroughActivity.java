@@ -13,8 +13,5 @@ public class WalkthroughActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walkthrough);
 
-
-        // Write a message to the database
-
     }
 }
