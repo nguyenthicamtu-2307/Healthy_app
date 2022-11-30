@@ -128,9 +128,9 @@ public class LoginActivity extends AppCompatActivity {
             }
             if (isHasUser) {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("object_user", kh);
-//                intent.putExtras(bundle);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user", kh);
+                intent.putExtras(bundle);
 //                Toast.makeText(getApplicationContext(), ""+kh.getId(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
 

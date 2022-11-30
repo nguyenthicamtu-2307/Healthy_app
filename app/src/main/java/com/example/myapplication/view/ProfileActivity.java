@@ -45,10 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         anhxa();
         apiService = Client.getAPIService();
-        sessionManager = new SessionManager(this);
-        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
-        HashMap<String,String> user = sessionManager.getUserDetail();
-        getTaiKhoan = user.get(sessionManager.USERNAME);
+
         getdata();
 
         image_change_name.setOnClickListener(this::Onclick);

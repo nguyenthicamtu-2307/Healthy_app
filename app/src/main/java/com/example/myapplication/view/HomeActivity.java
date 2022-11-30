@@ -1,10 +1,13 @@
 package com.example.myapplication.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,18 +16,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.myapplication.Model.User;
 import com.example.myapplication.R;
+import com.example.myapplication.view.APP.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private NavigationView nav_view;
     private ImageView home,setting,menu;
     private  LinearLayout catogory;
-
-
+    User kh;
+    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
+    String gettaikhoan;
+    EditText cannang;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,11 @@ public class HomeActivity extends AppCompatActivity {
         home=(ImageView) findViewById(R.id.home);
         setting=findViewById(R.id.setting);
         menu=findViewById(R.id.menutd);
+        cannang=findViewById(R.id.cannang);
+        sessionManager = new SessionManager(this);
+        sharedPreferences = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        gettaikhoan = user.get(sessionManager.USERNAME);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,14 +63,23 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Bundle bundleRecevie = getIntent().getExtras();
+        if (bundleRecevie != null) {
+            kh = (User) bundleRecevie.get("user");
+        }
         catogory=findViewById(R.id.catogory);
         catogory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HomeActivity.this,Choose_MenuActivity.class);
+                Intent intent=new Intent(HomeActivity.this,update_BMI.class);
+                Bundle bundle_change = new Bundle();
+                bundle_change.putSerializable("user", kh);
+                intent.putExtras(bundle_change);
                 startActivity(intent);
             }
         });
+
+
     }
 
 //    public void nav(){
