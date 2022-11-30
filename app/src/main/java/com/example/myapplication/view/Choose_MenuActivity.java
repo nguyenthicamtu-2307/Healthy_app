@@ -26,7 +26,7 @@ public class Choose_MenuActivity extends AppCompatActivity {
         if(BMI<18.5){
             giamcan.setVisibility(View.GONE);
         }else {
-            if(BMI>30){
+            if(BMI>26){
                 tangcan.setVisibility(View.GONE);
             }
 
