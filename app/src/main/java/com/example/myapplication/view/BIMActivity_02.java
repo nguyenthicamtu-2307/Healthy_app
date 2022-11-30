@@ -28,6 +28,7 @@ public class BIMActivity_02 extends AppCompatActivity {
     public LinearLayout layout;
     public Button btnGoOn;
     public Double weight, height;
+    public  double BMI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +42,33 @@ public class BIMActivity_02 extends AppCompatActivity {
         layout = (LinearLayout) findViewById(R.id.layouttron);
         btnGoOn = (Button) findViewById(R.id.btnGoOn);
         view_BMI();
+    btnGoOn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(BIMActivity_02.this,Choose_MenuActivity.class);
+            intent.putExtra("BMI", BMI);
+            startActivity(intent);
 
-        imageBack.setOnClickListener(this::onClick);
-        btnGoOn.setOnClickListener(this::onClick);
-
-    }
-
-    public void onClick(View v){
-        switch (v.getId()) {
-            case R.id.back:
-                startActivity(new Intent(this, BMIActivity.class));
-                break;
-            case R.id.btnGoOn:
-                bmiViewModel.insertBmi(weight,height);
-                Intent intent=new Intent(BIMActivity_02.this,HomeActivity.class);
-                startActivity(intent);
-                break;
         }
+    });
+//        imageBack.setOnClickListener(this::onClick);
+//        btnGoOn.setOnClickListener(this::onClick);
+
     }
+
+//    public void onClick(View v){
+//        switch (v.getId()) {
+//            case R.id.back:
+//                startActivity(new Intent(this, BMIActivity.class));
+//                break;
+//            case R.id.btnGoOn:
+//
+//                Intent intent=new Intent(BIMActivity_02.this,HomeActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//    }
+
 
     public void view_BMI(){
 
@@ -66,7 +76,7 @@ public class BIMActivity_02 extends AppCompatActivity {
         height = getIntent().getDoubleExtra("height", 0);
 
         Double heightt = height/100 ;
-        Double BMI = weight/(heightt*heightt);
+        BMI = weight/(heightt*heightt);
         double result = Math.round(BMI*100.0)/100.0;
         BMIText.setText(String.valueOf(result));
 

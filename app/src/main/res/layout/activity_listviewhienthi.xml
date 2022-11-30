@@ -25,11 +25,11 @@
             android:layout_height="120dp"/>
         <Button
             android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Xem công thức"
-            android:backgroundTint="#CC33FF"
+            android:background="@drawable/border_tv"
             />
 
     </LinearLayout>

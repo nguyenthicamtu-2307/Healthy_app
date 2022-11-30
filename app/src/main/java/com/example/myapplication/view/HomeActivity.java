@@ -1,73 +1,118 @@
 package com.example.myapplication.view;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ViewModel.ViewAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
-    private ViewPager mview;
+    private NavigationView nav_view;
+    private ImageView home,setting,menu;
+    private  LinearLayout catogory;
+
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-         navigationView=findViewById(R.id.bottom_nav);
-         mview=findViewById(R.id.viewpager);
-         setMview();
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        nav();
+        home=(ImageView) findViewById(R.id.home);
+        setting=findViewById(R.id.setting);
+        menu=findViewById(R.id.menutd);
+        setting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.action_home:
-//                        Toast.makeText(HomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
-                        mview.setCurrentItem(0);
-                    case R.id.action_setting:
-//                        Toast.makeText(HomeActivity.this, "setting", Toast.LENGTH_SHORT).show();
-                        mview.setCurrentItem(1);
-                    case R.id.menu:
-//                        Toast.makeText(HomeActivity.this, "thực đơn", Toast.LENGTH_SHORT).show();
-                        mview.setCurrentItem(2);
-                }
-                return true;
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,Activity_Setting.class);
+                startActivity(intent);
+            }
+        });
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,HienThiThucDonActivity.class);
+                startActivity(intent);
+            }
+        });
+        catogory=findViewById(R.id.catogory);
+        catogory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,Choose_MenuActivity.class);
+                startActivity(intent);
             }
         });
     }
-    private void setMview(){
-        ViewAdapter viewAdapter=new ViewAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mview.setAdapter(viewAdapter);
-      mview.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-          @Override
-          public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-          }
-
-          @Override
-          public void onPageSelected(int position) {
-                switch (position){
-                    case 0:
-                        navigationView.getMenu().findItem(R.id.action_home).setChecked(true);
-                        break;
-                    case 1:
-                        navigationView.getMenu().findItem(R.id.menu).setChecked(true);
-                        break;
-                    case 2:
-                        navigationView.getMenu().findItem(R.id.action_setting).setChecked(true);
-                        break;
-                }
-          }
-
-          @Override
-          public void onPageScrollStateChanged(int state) {
-
-          }
-      });
-    }
+//    public void nav(){
+//
+//
+//
+//
+//        menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this,Activity_Setting.class);
+//                startActivity(intent);
+//            }
+//        });
+//        home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+////        NavigationView nav_view = findViewById(R.id.nav_view);
+////        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+////            @Override
+////            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+////                switch (item.getItemId()){
+////                    case R.id.action_home:
+////
+////                        break;
+////                    case R.id.action_setting:
+////                        Intent setting = new Intent(HomeActivity.this,Activity_Setting.class);
+////                        startActivity(setting);
+////                        break;
+////                }
+////
+////                return true;
+////            }
+////        });
+//
+//        LinearLayout nav= findViewById(R.id.nav);
+////        bt.setSelectedItemId(R.id.action_home);
+////        nav.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                switch (v.getId()){
+////                    case R.id.home:
+////                        break;
+////                    case R.id.menu:
+//////                        Intent setting = new Intent(HomeActivity.this,Activity_Setting.class);
+//////                        startActivity(setting);
+////                        break;
+////                    case R.id.setting:
+////                        Intent intent = new Intent(HomeActivity.this,Activity_Setting.class);
+////                        startActivity(intent);
+////                        break;
+////                }
+////            }
+////        });
+//    }
 }

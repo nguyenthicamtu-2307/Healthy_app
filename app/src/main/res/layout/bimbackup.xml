@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintVertical_bias="0.02"
         app:layout_constraintHorizontal_bias="0.02"
-        android:background="@drawable/back"
+        android:background="@drawable/btn_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         <ImageView
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:background="@drawable/botron"
+            android:background="@drawable/round_shape"
             />
     </LinearLayout>
 
@@ -171,10 +171,8 @@
             android:layout_width="310dp"
             android:layout_height="49dp"
             android:text="Tiếp tục"
-            android:textStyle="bold"
-            android:textSize="24sp"
             android:textColor="@color/white"
-            android:background="@drawable/border_tv"
+            android:background="@color/btn"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="632dp" />
 

@@ -1,115 +1,140 @@
 package com.example.myapplication.Model;
 import java.io.Serializable;
 public class User implements Serializable {
-    private  int Id;
-    private String TaiKhoan;
-    private String MatKhau;
-    private  String TenUser;
-    private  String Dob;
-    private  String GioiTinh;
-    private String DiaChi;
-    private int SDT;
-    private String Quyen;
-    private  String AnhDaidien;
-
-public User(String TaiKhoan,String MatKhau,String TenUser){
-    this.TaiKhoan=TaiKhoan;
-    this.MatKhau=MatKhau;
-    this.TenUser=TenUser;
-}
-    @Override
-    public String toString() {
-        return "tbluser{" +
-                "Id=" + Id +
-                ", TaiKhoan='" + TaiKhoan + '\'' +
-                ", MatKhau='" + MatKhau + '\'' +
-                ", TenUser='" + TenUser + '\'' +
-                ", Dob=" + Dob +
-                ", GioiTinh='" + GioiTinh + '\'' +
-                ", DiaChi='" + DiaChi + '\'' +
-                ", SDT='" + SDT + '\'' +
-                ", Quyen='" + Quyen + '\'' +
-                ", AnhDaiDien'" + AnhDaidien + '\'' +
-                '}';
-    }
+    private  int id;
+    private String taikhoan;
+    private String matkhau;
+    private  String tenuser;
+    private  String dob;
+    private  String gioitinh;
+    private String diachi;
+    private int sdt;
+    private String quyen;
+    private  String anhdaidien;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getTaiKhoan() {
-        return TaiKhoan;
+    public String getTaikhoan() {
+        return taikhoan;
     }
 
-    public void setTaiKhoan(String taiKhoan) {
-        TaiKhoan = taiKhoan;
+    public void setTaikhoan(String taikhoan) {
+        this.taikhoan = taikhoan;
     }
 
-    public String getMatKhau() {
-        return MatKhau;
+    public String getMatkhau() {
+        return matkhau;
     }
 
-    public void setMatKhau(String matKhau) {
-        MatKhau = matKhau;
+    public void setMatkhau(String matkhau) {
+        this.matkhau = matkhau;
     }
 
-    public String getTenUser() {
-        return TenUser;
+    public String getTenuser() {
+        return tenuser;
     }
 
-    public void setTenUser(String tenUser) {
-        TenUser = tenUser;
+    public void setTenuser(String tenuser) {
+        this.tenuser = tenuser;
     }
 
     public String getDob() {
-        return Dob;
+        return dob;
     }
 
     public void setDob(String dob) {
-        Dob = dob;
+        this.dob = dob;
     }
 
-    public String getGioiTinh() {
-        return GioiTinh;
+    public String getGioitinh() {
+        return gioitinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
-        GioiTinh = gioiTinh;
+    public void setGioitinh(String gioitinh) {
+        this.gioitinh = gioitinh;
     }
 
-    public String getDiaChi() {
-        return DiaChi;
+    public String getDiachi() {
+        return diachi;
     }
 
-    public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
+    public void setDiachi(String diachi) {
+        this.diachi = diachi;
     }
 
-    public int getSDT() {
-        return SDT;
+    public int getSdt() {
+        return sdt;
     }
 
-    public void setSDT(int SDT) {
-        this.SDT = SDT;
+    public void setSdt(int sdt) {
+        this.sdt = sdt;
     }
 
     public String getQuyen() {
-        return Quyen;
+        return quyen;
     }
 
     public void setQuyen(String quyen) {
-        Quyen = quyen;
+        this.quyen = quyen;
     }
 
-    public String getAnhDaidien() {
-        return AnhDaidien;
+    public String getAnhdaidien() {
+        return anhdaidien;
     }
 
-    public void setAnhDaidien(String anhDaidien) {
-        AnhDaidien = anhDaidien;
+    public void setAnhdaidien(String anhdaidien) {
+        this.anhdaidien = anhdaidien;
+    }
+
+    public int getChieucao() {
+        return chieucao;
+    }
+
+    public void setChieucao(int chieucao) {
+        this.chieucao = chieucao;
+    }
+
+    public int getCannang() {
+        return cannang;
+    }
+
+    public void setCannang(int cannang) {
+        this.cannang = cannang;
+    }
+
+    private  int chieucao;
+    private  int cannang;
+
+public User(String TaiKhoan,String MatKhau,String TenUser){
+    this.taikhoan=TaiKhoan;
+    this.matkhau=MatKhau;
+    this.tenuser=TenUser;
+}
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "tbluser{" +
+                "Id=" + id +
+                ", TaiKhoan='" + taikhoan + '\'' +
+                ", MatKhau='" + matkhau + '\'' +
+                ", TenUser='" + tenuser + '\'' +
+                ", Dob=" + dob +
+                ", GioiTinh='" + gioitinh + '\'' +
+                ", DiaChi='" + diachi + '\'' +
+                ", SDT='" + sdt + '\'' +
+                ", Quyen='" + quyen + '\'' +
+                ", AnhDaiDien'" + anhdaidien + '\'' +
+                ", ChieuCao'" + chieucao + '\'' +
+                ", CanNang'" + cannang + '\'' +
+                '}';
     }
 }
