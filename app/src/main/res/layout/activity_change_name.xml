@@ -11,13 +11,15 @@
         android:layout_height="50dp"
         android:background="@drawable/background"
         android:orientation="horizontal">
+
         <ImageButton
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/back"
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="13dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:src="@drawable/back" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
