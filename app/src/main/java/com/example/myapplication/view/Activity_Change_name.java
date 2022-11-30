@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class Activity_Change_name extends AppCompatActivity {
     public String tenuser;
     public TextView text_username;
     public Button btnsubmitFullname;
+    public ImageButton btn_back;
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
     APIService apiService;
@@ -35,6 +37,7 @@ public class Activity_Change_name extends AppCompatActivity {
         setContentView(R.layout.activity_change_name);
         anhxa();
         btnsubmitFullname.setOnClickListener(this::Onclick);
+        btn_back.setOnClickListener(this::Onclick);
     }
 
 
@@ -42,14 +45,20 @@ public class Activity_Change_name extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.submitFullname:
                 update_user_csdl();
-                Intent setting = new Intent(this, Activity_Setting.class);
+                Intent setting = new Intent(this, ProfileActivity.class);
                 startActivity(setting);
+                break;
+            case R.id.btn_back:
+                Intent back = new Intent(this, ProfileActivity.class);
+                startActivity(back);
                 break;
         }
 
     }
 
     public void anhxa() {
+
+        btn_back = findViewById(R.id.btn_back);
         Bundle bundleRecevie = getIntent().getExtras();
         if (bundleRecevie != null) {
             kh = (User) bundleRecevie.get("user");
@@ -72,25 +81,7 @@ public class Activity_Change_name extends AppCompatActivity {
 
     public void update_user_csdl() {
         update_user_app();
-//        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                if (response.isSuccessful()){
-//                    Toast.makeText(Activity_Change_name.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                Toast.makeText(Activity_Change_name.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
-//            }
-//        });
-//        Intent intent = new Intent(Activity_Change_name.this, Activity_Setting.class);
-//
-//
-//    }
-//
-//}
+
         APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

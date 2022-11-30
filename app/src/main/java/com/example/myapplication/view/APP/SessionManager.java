@@ -33,10 +33,11 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String username){
+    public void createSession(String username, String password){
 
 //        editor.putBoolean(LOGIN,true);
         editor.putString(USERNAME,username);
+        editor.putString(PASSWORD,password);
 //        editor.putString(EMAIL,email);
 //        editor.putString(PHONE,phone);
 //        editor.putString(DATEOFBIRTH,dateofbirth);
@@ -84,7 +85,7 @@ public class SessionManager {
         user.put(USERNAME,sharedPreferences.getString(USERNAME,null));
 //        user.put(NAME,sharedPreferences.getString(NAME,null));
 //        user.put(EMAIL,sharedPreferences.getString(EMAIL,null));
-//        user.put(PASSWORD,sharedPreferences.getString(PASSWORD,null));
+        user.put(PASSWORD,sharedPreferences.getString(PASSWORD,null));
 //        user.put(PHONE,sharedPreferences.getString(PHONE,null));
 //        user.put(DATEOFBIRTH,sharedPreferences.getString(DATEOFBIRTH,null));
 //        user.put(ID,sharedPreferences.getString(ID,null));

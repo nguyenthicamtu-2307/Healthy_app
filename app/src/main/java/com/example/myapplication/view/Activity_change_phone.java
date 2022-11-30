@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class Activity_change_phone extends AppCompatActivity {
     public int sdt;
     public TextView text_phone;
     public Button btnsubmitSDT;
+    ImageButton btn_back;
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
     APIService apiService;
@@ -35,6 +37,7 @@ public class Activity_change_phone extends AppCompatActivity {
         setContentView(R.layout.activity_change_phone);
         anhxa();
         btnsubmitSDT.setOnClickListener(this::Onclick);
+        btn_back.setOnClickListener(this::Onclick);
     }
 
     public void Onclick(View v){
@@ -44,11 +47,16 @@ public class Activity_change_phone extends AppCompatActivity {
                 Intent setting = new Intent(this, ProfileActivity.class);
                 startActivity(setting);
                 break;
+            case R.id.btn_back:
+                Intent back = new Intent(this, ProfileActivity.class);
+                startActivity(back);
+                break;
         }
 
     }
 
     public void anhxa(){
+        btn_back = findViewById(R.id.btn_back);
         Bundle bundleRecevie = getIntent().getExtras();
         if(bundleRecevie!=null){
             kh = (User) bundleRecevie.get("user");

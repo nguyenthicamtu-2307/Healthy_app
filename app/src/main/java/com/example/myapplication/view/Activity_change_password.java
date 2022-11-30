@@ -34,6 +34,7 @@ public class Activity_change_password extends AppCompatActivity {
     public TextView txt_pass, txt_newpass;
     String getTaiKhoan, getPassword;
     Button btnsubmitPassword;
+    public ImageButton btn_back;
     private List<User> khachHang;
     APIService apiService;
     public User kh;
@@ -47,7 +48,7 @@ public class Activity_change_password extends AppCompatActivity {
 
 
         btnsubmitPassword.setOnClickListener(this::Onclick);
-
+        btn_back.setOnClickListener(this::Onclick);
 
     }
 
@@ -58,6 +59,10 @@ public class Activity_change_password extends AppCompatActivity {
                 String new_pass = txt_newpass.getText().toString().trim();
                 checkpass(new_pass, old_pass);
                 break;
+            case R.id.btn_back:
+                Intent back = new Intent(this, Activity_Setting.class);
+                startActivity(back);
+                break;
         }
 
     }
@@ -67,6 +72,7 @@ public class Activity_change_password extends AppCompatActivity {
         txt_pass = (TextView) findViewById(R.id.oldPassword);
         txt_newpass = (TextView) findViewById(R.id.newPassword);
         btnsubmitPassword = (Button) findViewById(R.id.submitPassword);
+        btn_back = (ImageButton) findViewById((R.id.btn_back));
 
         apiService = Client.getAPIService();
         sessionManager = new SessionManager(this);
@@ -132,6 +138,7 @@ public class Activity_change_password extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(Activity_change_password.this, "Cập nhật  thành công!!!", Toast.LENGTH_LONG).show();
+                    sessionManager.createSession(kh.getTaikhoan(), kh.getMatkhau() );
                 }
             }
 
