@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class Activity_Change_name extends AppCompatActivity {
 
-    public  String tenuser;
+    public String tenuser;
     public TextView text_username;
     public Button btnsubmitFullname;
     SharedPreferences sharedPreferences;
@@ -38,7 +38,7 @@ public class Activity_Change_name extends AppCompatActivity {
     }
 
 
-    public void Onclick(View v){
+    public void Onclick(View v) {
         switch (v.getId()) {
             case R.id.submitFullname:
                 update_user_csdl();
@@ -49,9 +49,9 @@ public class Activity_Change_name extends AppCompatActivity {
 
     }
 
-    public void anhxa(){
+    public void anhxa() {
         Bundle bundleRecevie = getIntent().getExtras();
-        if(bundleRecevie!=null){
+        if (bundleRecevie != null) {
             kh = (User) bundleRecevie.get("user");
         }
 
@@ -59,35 +59,52 @@ public class Activity_Change_name extends AppCompatActivity {
         text_username = (TextView) findViewById(R.id.text_tenuser);
         btnsubmitFullname = (Button) findViewById(R.id.submitFullname);
 
-        if (tenuser == null){
+        if (tenuser == null) {
             text_username.setText(" ");
-        }else{
+        } else {
             text_username.setText(tenuser);
         }
     }
 
-    public void update_user_app(){
+    public void update_user_app() {
         kh.setTenuser(text_username.getText().toString().trim());
     }
 
-    public void update_user_csdl(){
+    public void update_user_csdl() {
         update_user_app();
-        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<User>() {
+//        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                if (response.isSuccessful()){
+//                    Toast.makeText(Activity_Change_name.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                Toast.makeText(Activity_Change_name.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        Intent intent = new Intent(Activity_Change_name.this, Activity_Setting.class);
+//
+//
+//    }
+//
+//}
+        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(Activity_Change_name.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_Change_name.this,"Cập nhật  thành công!!!",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(Activity_Change_name.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(Activity_Change_name.this,"Cập khong thành công!!!",Toast.LENGTH_LONG).show();
             }
         });
         Intent intent = new Intent(Activity_Change_name.this, Activity_Setting.class);
 
-
     }
-
 }

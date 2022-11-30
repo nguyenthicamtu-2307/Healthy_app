@@ -72,16 +72,16 @@ public class Activity_change_phone extends AppCompatActivity {
 
     public void update_phone_csdl(){
         update_phone_app();
-        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<User>() {
+        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(Activity_change_phone.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(Activity_change_phone.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
             }
         });

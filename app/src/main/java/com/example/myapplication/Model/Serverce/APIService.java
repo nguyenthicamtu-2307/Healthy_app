@@ -21,7 +21,7 @@ public interface APIService {
                 .create();
 
         APIService apiService = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.100:8081/")
+                .baseUrl("http://192.168.143.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(APIService.class);
@@ -32,6 +32,6 @@ public interface APIService {
         @POST("khachhang/add")
         Call<User> createUser(@Body User khachHang);
         @POST("khachhang/update/{taiKhoan}")
-        Call<User> updateKhachhang(@Body User khachhang,
-                                   @Path("taiKhoan") String taiKhoan);
+        Call<String> updateKhachhang(@Body User khachhang,
+                                     @Path("taiKhoan") String taiKhoan);
 }

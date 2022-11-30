@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (strUserName.equals(khachHang1.getTaikhoan()) && strPassword.equals(khachHang1.getMatkhau())) {
                     isHasUser = true;
                     kh = khachHang1;
-                    sessionManager.createSession(kh.getTaikhoan(),kh.getTenuser(), kh.getSdt(), kh.getDob(),kh.getMatkhau(),kh.getChieucao(), kh.getCannang());
+//                    sessionManager.createSession(kh.getTaikhoan(),kh.getTenuser(), kh.getSdt(), kh.getDob(),kh.getMatkhau(),kh.getChieucao(), kh.getCannang());
                     break;
                 }
             }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -126,17 +127,18 @@ public class Activity_change_password extends AppCompatActivity {
 
     public void update_pass_CSDL(){
         update_pass_app();
-        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<User>() {
+        APIService.apiService.updateKhachhang(kh,kh.getTaikhoan()).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()){
-                    Toast.makeText(Activity_change_password.this,"Cập nhật ko thành công!!!",Toast.LENGTH_LONG).show();
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(Activity_change_password.this, "Cập nhật  thành công!!!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(Activity_change_password.this,"Cập nhật thành công!!!",Toast.LENGTH_LONG).show();
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(Activity_change_password.this, "Cập nhật không thành công!!!", Toast.LENGTH_LONG).show();
+                Log.e("error", t.getMessage());
             }
         });
         Intent setting = new Intent(this, Activity_Setting.class);
