@@ -78,7 +78,7 @@
             android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="385dp"
+            android:layout_marginTop="315dp"
             android:background="@color/switch_pink"
             android:orientation="horizontal">
 
