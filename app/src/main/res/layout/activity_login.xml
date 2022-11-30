@@ -51,7 +51,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-
+                    android:drawableLeft="@drawable/account"
+                    android:drawableStart="@drawable/account"
+                    android:drawablePadding="10dp"
                     android:ems="15"
                     android:textColor="#000"
                     android:lines="1"
@@ -76,6 +78,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
+                    android:drawableStart="@drawable/lock"
+                    android:drawableLeft="@drawable/lock"
+                    android:drawablePadding="10dp"
                     android:ems="15"
                     android:hint="Vui lòng nhập mật khẩu"
                     android:inputType="textPassword"
@@ -104,6 +109,7 @@
                     android:background="@drawable/border_tv"
                     android:text="Đăng Nhập"
                     android:textAlignment="center"
+
                     android:textColor="#ffffff"
                     android:textSize="25dp"
                     android:textStyle="bold"
@@ -153,7 +159,6 @@
         </LinearLayout>
 
     </LinearLayout>
-x
 
 
     <TextView

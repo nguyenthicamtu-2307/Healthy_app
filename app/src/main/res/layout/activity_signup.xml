@@ -39,14 +39,18 @@
                 android:layout_height="wrap_content"
                 android:text="XIN CHÀO"
                 android:textColor="@color/primary_clolor"
-                android:textSize="20dp" />
+                android:textSize="25dp"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/vWelcome"
-                android:layout_marginTop="5dp"
+
                 android:text="Đăng ký để bắt đầu"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:textColor="@color/primary_clolor" />
         </RelativeLayout>
     </RelativeLayout>
