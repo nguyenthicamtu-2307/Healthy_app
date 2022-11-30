@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,8 @@ public class ProfileActivity extends AppCompatActivity {
     SessionManager sessionManager;
     public TextView text_taikhoan, text_hoten, text_ngaysinh, text_email, text_gioiting, text_sdt, text_cannang, text_chieucao;
     String getTaiKhoan;
-    ImageButton image_change_name, image_change_phone, image_change_cannang, image_change_gioitinh, image_change_chieucao;
+    ImageButton image_change_name, image_change_phone, image_change_cannang, image_change_gioitinh, image_change_chieucao, image_back;
+
     private List<User> khachHang;
     APIService apiService;
     public User kh;
@@ -56,12 +58,17 @@ public class ProfileActivity extends AppCompatActivity {
         image_change_chieucao.setOnClickListener(this::Onclick);
         image_change_gioitinh.setOnClickListener(this::Onclick);
         image_change_cannang.setOnClickListener(this::Onclick);
+        image_back.setOnClickListener(this::Onclick);
 
 
     }
 
     public void Onclick(View v){
         switch (v.getId()) {
+            case R.id.image_back:
+                Intent back = new Intent(this,Activity_Setting.class);
+                startActivity(back);
+                break;
             case R.id.image_changename:
                 Intent changename = new Intent(this, Activity_Change_name.class);
                 Bundle bundle_name = new Bundle();
@@ -85,6 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
                 change.putExtras(bundle_change);
                 startActivity(change);
                 break;
+
         }
 
     }
@@ -105,7 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
         image_change_gioitinh = (ImageButton) findViewById(R.id.image_changegioitinh);
         image_change_cannang = (ImageButton) findViewById(R.id.image_changecanang);
         image_change_chieucao = (ImageButton) findViewById(R.id.image_changechieucao);
-
+        image_back = (ImageButton) findViewById(R.id.image_back);
     }
 
     public void getdata() {
